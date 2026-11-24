@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Saúde em Dia | Contato e pré-cadastro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo principal</a>
+
+<header class="header">
+  <h1 class="logo"><a href="index.html">SAÚDE EM DIA</a></h1>
+
+  <nav class="nav" aria-label="Navegação principal">
+    <ul class="nav-links">
+      <li><a href="sobre.html">Sobre nós</a></li>
+      <li><a href="index.html#servicos">Serviços</a></li>
+      <li><a href="sobre.html#pacientes">Para pacientes</a></li>
+      <li><a href="sobre.html#clinicas">Para clínicas</a></li>
+      <li><a href="contato.html" aria-current="page">Contato</a></li>
+    </ul>
+  </nav>
+
+  <div class="nav-actions">
+    <a class="btn" href="contato.html#formulario">CRIAR PERFIL</a>
+    <a class="btn" href="#">ENTRAR</a>
+  </div>
+</header>
+
+<main class="main" id="conteudo">
+
+  <section class="secao" id="formulario">
+    <h2>Contato e pré-cadastro</h2>
+    <p class="texto-largo">Conte um pouco sobre você e sobre o que procura. Os campos com asterisco (*) são obrigatórios.</p>
+
+    <form class="formulario" action="#" method="post">
+
+      <div class="campo">
+        <label for="nome">Nome completo *</label>
+        <input type="text" id="nome" name="nome" required minlength="3" autocomplete="name" aria-describedby="dica-nome">
+        <p class="dica" id="dica-nome">Digite nome e sobrenome, com pelo menos 3 letras.</p>
+      </div>
+
+      <div class="campo">
+        <label for="email">E-mail *</label>
+        <input type="email" id="email" name="email" required minlength="5" autocomplete="email" aria-describedby="dica-email">
+        <p class="dica" id="dica-email">Exemplo: nome@email.com</p>
+      </div>
+
+      <div class="campo">
+        <label for="telefone">Telefone (opcional)</label>
+        <input type="tel" id="telefone" name="telefone" minlength="10" autocomplete="tel" aria-describedby="dica-telefone">
+        <p class="dica" id="dica-telefone">Informe o DDD, por exemplo: 41 99999-9999.</p>
+      </div>
+
+      <fieldset>
+        <legend>Você é: *</legend>
+        <div class="opcao">
+          <input type="radio" id="perfil-paciente" name="perfil" value="paciente" required>
+          <label for="perfil-paciente">Paciente</label>
+        </div>
+        <div class="opcao">
+          <input type="radio" id="perfil-clinica" name="perfil" value="clinica">
+          <label for="perfil-clinica">Clínica ou laboratório</label>
+        </div>
+        <div class="opcao">
+          <input type="radio" id="perfil-profissional" name="perfil" value="profissional">
+          <label for="perfil-profissional">Profissional de saúde</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Quais recursos mais interessam a você?</legend>
+        <div class="opcao">
+          <input type="checkbox" id="rec-busca" name="recursos" value="busca">
+          <label for="rec-busca">Busca de exames</label>
+        </div>
+        <div class="opcao">
+          <input type="checkbox" id="rec-agendamento" name="recursos" value="agendamento">
+          <label for="rec-agendamento">Agendamento</label>
+        </div>
+        <div class="opcao">
+          <input type="checkbox" id="rec-preparo" name="recursos" value="preparo">
+          <label for="rec-preparo">Orientações de preparo</label>
+        </div>
+        <div class="opcao">
+          <input type="checkbox" id="rec-resultados" name="recursos" value="resultados">
+          <label for="rec-resultados">Resultados</label>
+        </div>
+        <div class="opcao">
+          <input type="checkbox" id="rec-historico" name="recursos" value="historico">
+          <label for="rec-historico">Histórico de exames</label>
+        </div>
+      </fieldset>
+
+      <div class="campo">
+        <label for="mensagem">Mensagem (opcional)</label>
+        <textarea id="mensagem" name="mensagem" aria-describedby="dica-mensagem"></textarea>
+        <p class="dica" id="dica-mensagem">Escreva sua dúvida ou sugestão.</p>
+      </div>
+
+      <button class="btn" type="submit" aria-label="Enviar pré-cadastro do Saúde em Dia">ENVIAR</button>
+    </form>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <ul class="social">
+    <li>
+      <a href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+        <span>Instagram</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.5 12 31 31 0 0 0 2 15.8a3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1c.4-1.9.5-3.8.5-3.8s0-1.9-.5-3.8Z"/>
+          <path d="m10 15 5-3-5-3v6Z" fill="currentColor" stroke="none"/>
+        </svg>
+        <span>YouTube</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2Z"/>
+        </svg>
+        <span>Facebook</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z"/>
+          <rect x="2" y="9" width="4" height="12"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+        <span>LinkedIn</span>
+      </a>
+    </li>
+  </ul>
+
+  <p class="creditos">© 2026 Saúde em Dia — Desenvolvido por Mariane Goch &amp; Carlos Morevi</p>
+</footer>
+
+</body>
+</html>
