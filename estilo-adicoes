@@ -1,0 +1,102 @@
+/* ==========================================================
+   ADIÇÕES AO estilo.css — colar no final do arquivo
+   Cores personalizáveis via hexadecimal (altere só aqui)
+   ========================================================== */
+:root {
+  --cor-icone: #357146;          /* traço dos ícones */
+  --cor-icone-fundo: #E3F1E7;    /* círculo atrás dos ícones */
+  --cor-foco: #1B4D2B;           /* contorno de foco do teclado */
+}
+
+/* ---------- Ícones dos cartões (O que o app oferece) ---------- */
+.cartao .icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  background: var(--cor-icone-fundo);
+  color: var(--cor-icone);
+}
+
+.cartao .icone svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* ---------- Como funciona: imagem à esquerda, lista à direita ---------- */
+.como-funciona-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: center;
+}
+
+.como-funciona-grid .foto-destaque {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.como-funciona-grid .lista-passos {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .como-funciona-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* ---------- Página em construção ---------- */
+.construcao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-block: 64px;
+}
+
+.construcao-icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 24px;
+  border-radius: 50%;
+  background: var(--cor-icone-fundo);
+  color: var(--cor-icone);
+}
+
+.construcao-icone svg {
+  width: 56px;
+  height: 56px;
+}
+
+.construcao-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* ---------- Acessibilidade ---------- */
+a:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
