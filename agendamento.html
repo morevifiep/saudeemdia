@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Saúde em Dia | Agendamento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilo.css">
+  <script src="menu.js" defer></script>
+</head>
+<body>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo principal</a>
+
+<header class="header">
+  <a class="logo" href="index.html">SAÚDE EM DIA</a>
+
+  <button type="button" class="btn btn-menu" aria-expanded="false" aria-controls="menu-principal">
+    <svg class="icone-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" focusable="false">
+      <path class="traco-1" d="M4 7h16"/><path class="traco-2" d="M4 12h16"/><path class="traco-3" d="M4 17h16"/>
+    </svg>
+    MENU
+  </button>
+
+  <div class="menu-painel" id="menu-principal">
+    <nav class="nav" aria-label="Navegação principal">
+      <ul class="nav-links">
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="index.html#servicos">Serviços</a></li>
+        <li><a href="sobre.html#pacientes">Para pacientes</a></li>
+        <li><a href="sobre.html#clinicas">Para clínicas</a></li>
+        <li><a href="exames.html">Exames</a></li>
+        <li><a href="agendamento.html" aria-current="page">Agendamento</a></li>
+        <li><a href="parceiros.html">Parceiros</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="btn" href="contato.html#formulario">CRIAR PERFIL</a>
+      <a class="btn" href="emconstrucao.html">ENTRAR</a>
+    </div>
+  </div>
+</header>
+
+<main class="main" id="conteudo">
+
+  <section class="secao" id="formulario">
+    <h1>Agendamento de exames</h1>
+    <p class="texto-largo">Escolha os exames, informe seus dados e a data de preferência. Entraremos em contato para confirmar local e horário. Os campos com asterisco (*) são obrigatórios.</p>
+
+    <form class="formulario formulario-largo" action="#" method="post" id="form-agendamento">
+
+      <div class="campo">
+        <label for="nome">Nome completo *</label>
+        <input type="text" id="nome" name="nome" required minlength="3" autocomplete="name" aria-describedby="dica-nome">
+        <p class="dica" id="dica-nome">Digite nome e sobrenome, com pelo menos 3 letras.</p>
+      </div>
+
+      <div class="campo">
+        <label for="email">E-mail *</label>
+        <input type="email" id="email" name="email" required minlength="5" autocomplete="email" aria-describedby="dica-email">
+        <p class="dica" id="dica-email">Exemplo: nome@email.com</p>
+      </div>
+
+      <div class="campo">
+        <label for="telefone">Telefone (opcional)</label>
+        <input type="tel" id="telefone" name="telefone" minlength="10" autocomplete="tel" aria-describedby="dica-telefone">
+        <p class="dica" id="dica-telefone">Informe o DDD, por exemplo: 41 99999-9999.</p>
+      </div>
+
+      <div class="campo" id="bloco-filtro" hidden>
+        <label for="filtro">Filtrar exames</label>
+        <div class="filtro-linha">
+          <input type="search" id="filtro" autocomplete="off" aria-describedby="dica-filtro" aria-controls="lista-exames">
+          <button type="button" class="btn btn-secundario" id="limpar-filtro">LIMPAR FILTRO</button>
+        </div>
+        <p class="dica" id="dica-filtro">Digite parte do nome, por exemplo: vitamina, ultrassom ou check-up. Os exames já marcados continuam selecionados mesmo quando ficam fora do filtro.</p>
+        <p class="sem-resultado" id="sem-resultado" hidden>Nenhum exame encontrado. Tente outro termo ou limpe o filtro.</p>
+        <p class="sr-only" id="status-filtro" role="status" aria-live="polite"></p>
+        <p class="resumo-selecao" id="resumo" aria-live="polite">Nenhum exame selecionado.</p>
+      </div>
+
+      <div id="lista-exames" role="group" aria-labelledby="dica-exames">
+        <p class="dica" id="dica-exames">Marque um ou mais exames *</p>
+      <fieldset class="grupo-exames">
+        <legend>Exames laboratoriais</legend>
+        <div class="subgrupo" role="group" aria-labelledby="sg-rotina-e-metabolismo">
+          <p class="subgrupo-titulo" id="sg-rotina-e-metabolismo">Rotina e metabolismo</p>
+          <div class="opcoes-colunas">
+            <div class="opcao">
+              <input type="checkbox" id="ex-hemograma-completo" name="exames" value="hemograma-completo">
+              <label for="ex-hemograma-completo">Hemograma completo</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-glicemia-de-jejum" name="exames" value="glicemia-de-jejum">
+              <label for="ex-glicemia-de-jejum">Glicemia de jejum</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-colesterol-total-e-fracoes" name="exames" value="colesterol-total-e-fracoes">
+              <label for="ex-colesterol-total-e-fracoes">Colesterol total e frações</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-triglicerideos" name="exames" value="triglicerideos">
+              <label for="ex-triglicerideos">Triglicerídeos</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-ureia" name="exames" value="ureia">
+              <label for="ex-ureia">Ureia</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-creatinina" name="exames" value="creatinina">
+              <label for="ex-creatinina">Creatinina</label>
+            </div>
+          </div>
+        </div>
+        <div class="subgrupo" role="group" aria-labelledby="sg-hormonios-e-vitaminas">
+          <p class="subgrupo-titulo" id="sg-hormonios-e-vitaminas">Hormônios e vitaminas</p>
+          <div class="opcoes-colunas">
+            <div class="opcao">
+              <input type="checkbox" id="ex-tsh" name="exames" value="tsh">
+              <label for="ex-tsh">TSH</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-t4-livre" name="exames" value="t4-livre">
+              <label for="ex-t4-livre">T4 livre</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-beta-hcg" name="exames" value="beta-hcg">
+              <label for="ex-beta-hcg">Beta-HCG</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-vitamina-d" name="exames" value="vitamina-d">
+              <label for="ex-vitamina-d">Vitamina D</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-vitamina-b12" name="exames" value="vitamina-b12">
+              <label for="ex-vitamina-b12">Vitamina B12</label>
+            </div>
+          </div>
+        </div>
+        <div class="subgrupo" role="group" aria-labelledby="sg-funcao-hepatica">
+          <p class="subgrupo-titulo" id="sg-funcao-hepatica">Função hepática</p>
+          <div class="opcoes-colunas">
+            <div class="opcao">
+              <input type="checkbox" id="ex-tgo-ast" name="exames" value="tgo-ast">
+              <label for="ex-tgo-ast">TGO (AST)</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-tgp-alt" name="exames" value="tgp-alt">
+              <label for="ex-tgp-alt">TGP (ALT)</label>
+            </div>
+          </div>
+        </div>
+        <div class="subgrupo" role="group" aria-labelledby="sg-urina">
+          <p class="subgrupo-titulo" id="sg-urina">Urina</p>
+          <div class="opcoes-colunas">
+            <div class="opcao">
+              <input type="checkbox" id="ex-urina-tipo-1-eas" name="exames" value="urina-tipo-1-eas">
+              <label for="ex-urina-tipo-1-eas">Urina tipo 1 (EAS)</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-urocultura" name="exames" value="urocultura">
+              <label for="ex-urocultura">Urocultura</label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="grupo-exames">
+        <legend>Exames de imagem e cardiologia</legend>
+        <div class="subgrupo" role="group" aria-labelledby="sg-ultrassonografia">
+          <p class="subgrupo-titulo" id="sg-ultrassonografia">Ultrassonografia</p>
+          <div class="opcoes-colunas">
+            <div class="opcao">
+              <input type="checkbox" id="ex-ultrassonografia-de-abdomen-total" name="exames" value="ultrassonografia-de-abdomen-total">
+              <label for="ex-ultrassonografia-de-abdomen-total">Ultrassonografia de abdômen total</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-ultrassonografia-de-tireoide" name="exames" value="ultrassonografia-de-tireoide">
+              <label for="ex-ultrassonografia-de-tireoide">Ultrassonografia de tireoide</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-ultrassonografia-de-mamas" name="exames" value="ultrassonografia-de-mamas">
+              <label for="ex-ultrassonografia-de-mamas">Ultrassonografia de mamas</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-ultrassonografia-transvaginal" name="exames" value="ultrassonografia-transvaginal">
+              <label for="ex-ultrassonografia-transvaginal">Ultrassonografia transvaginal</label>
+            </div>
+          </div>
+        </div>
+        <div class="subgrupo" role="group" aria-labelledby="sg-raio-x-e-preventivos">
+          <p class="subgrupo-titulo" id="sg-raio-x-e-preventivos">Raio-X e preventivos</p>
+          <div class="opcoes-colunas">
+            <div class="opcao">
+              <input type="checkbox" id="ex-raio-x-de-torax" name="exames" value="raio-x-de-torax">
+              <label for="ex-raio-x-de-torax">Raio-X de tórax</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-mamografia-digital" name="exames" value="mamografia-digital">
+              <label for="ex-mamografia-digital">Mamografia digital</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-densitometria-ossea" name="exames" value="densitometria-ossea">
+              <label for="ex-densitometria-ossea">Densitometria óssea</label>
+            </div>
+          </div>
+        </div>
+        <div class="subgrupo" role="group" aria-labelledby="sg-alta-complexidade">
+          <p class="subgrupo-titulo" id="sg-alta-complexidade">Alta complexidade</p>
+          <div class="opcoes-colunas">
+            <div class="opcao">
+              <input type="checkbox" id="ex-tomografia-computadorizada" name="exames" value="tomografia-computadorizada">
+              <label for="ex-tomografia-computadorizada">Tomografia computadorizada</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-ressonancia-magnetica-de-cranio" name="exames" value="ressonancia-magnetica-de-cranio">
+              <label for="ex-ressonancia-magnetica-de-cranio">Ressonância magnética de crânio</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-ressonancia-magnetica-de-coluna" name="exames" value="ressonancia-magnetica-de-coluna">
+              <label for="ex-ressonancia-magnetica-de-coluna">Ressonância magnética de coluna</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-ressonancia-magnetica-de-articulacoes" name="exames" value="ressonancia-magnetica-de-articulacoes">
+              <label for="ex-ressonancia-magnetica-de-articulacoes">Ressonância magnética de articulações</label>
+            </div>
+          </div>
+        </div>
+        <div class="subgrupo" role="group" aria-labelledby="sg-cardiologia">
+          <p class="subgrupo-titulo" id="sg-cardiologia">Cardiologia</p>
+          <div class="opcoes-colunas">
+            <div class="opcao">
+              <input type="checkbox" id="ex-eletrocardiograma-ecg" name="exames" value="eletrocardiograma-ecg">
+              <label for="ex-eletrocardiograma-ecg">Eletrocardiograma (ECG)</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-ecocardiograma" name="exames" value="ecocardiograma">
+              <label for="ex-ecocardiograma">Ecocardiograma</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-teste-ergometrico" name="exames" value="teste-ergometrico">
+              <label for="ex-teste-ergometrico">Teste ergométrico</label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="grupo-exames">
+        <legend>Check-ups prontos</legend>
+        <div class="subgrupo" role="group" aria-labelledby="sg-check-up-basico">
+          <p class="subgrupo-titulo" id="sg-check-up-basico">Check-up básico</p>
+          <div class="opcoes-colunas">
+            <div class="opcao">
+              <input type="checkbox" id="ex-check-up-basico" name="exames" value="check-up-basico">
+              <label for="ex-check-up-basico">Check-up básico</label>
+            </div>
+          </div>
+        </div>
+        <div class="subgrupo" role="group" aria-labelledby="sg-check-up-saude-da-mulher-homem">
+          <p class="subgrupo-titulo" id="sg-check-up-saude-da-mulher-homem">Check-up Saúde da Mulher / Homem</p>
+          <div class="opcoes-colunas">
+            <div class="opcao">
+              <input type="checkbox" id="ex-check-up-saude-da-mulher" name="exames" value="check-up-saude-da-mulher">
+              <label for="ex-check-up-saude-da-mulher">Check-up Saúde da Mulher</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="ex-check-up-saude-do-homem" name="exames" value="check-up-saude-do-homem">
+              <label for="ex-check-up-saude-do-homem">Check-up Saúde do Homem</label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      </div>
+
+      <div class="campo">
+        <label for="data">Data de preferência *</label>
+        <input type="date" id="data" name="data" required aria-describedby="dica-data">
+        <p class="dica" id="dica-data">Escolha a partir de hoje. A data final será confirmada pela equipe.</p>
+      </div>
+
+      <fieldset>
+        <legend>Período de preferência *</legend>
+        <div class="opcao">
+          <input type="radio" id="periodo-manha" name="periodo" value="manha" required>
+          <label for="periodo-manha">Manhã</label>
+        </div>
+        <div class="opcao">
+          <input type="radio" id="periodo-tarde" name="periodo" value="tarde">
+          <label for="periodo-tarde">Tarde</label>
+        </div>
+        <div class="opcao">
+          <input type="radio" id="periodo-indiferente" name="periodo" value="indiferente">
+          <label for="periodo-indiferente">Tanto faz</label>
+        </div>
+      </fieldset>
+
+      <div class="campo">
+        <label for="mensagem">Observações (opcional)</label>
+        <textarea id="mensagem" name="mensagem" aria-describedby="dica-mensagem"></textarea>
+        <p class="dica" id="dica-mensagem">Informe pedido médico, convênio ou outra informação útil.</p>
+      </div>
+
+      <button class="btn" type="submit">SOLICITAR AGENDAMENTO</button>
+    </form>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <ul class="social">
+    <li>
+      <a href="https://www.instagram.com/" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+        <span>Instagram</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.youtube.com/" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.5 12 31 31 0 0 0 2 15.8a3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1c.4-1.9.5-3.8.5-3.8s0-1.9-.5-3.8Z"/>
+          <path d="m10 15 5-3-5-3v6Z" fill="currentColor" stroke="none"/>
+        </svg>
+        <span>YouTube</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2Z"/>
+        </svg>
+        <span>Facebook</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.linkedin.com/" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z"/>
+          <rect x="2" y="9" width="4" height="12"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+        <span>LinkedIn</span>
+      </a>
+    </li>
+  </ul>
+
+  <p class="creditos">© 2026 Saúde em Dia: “Prevenir, diagnosticar e cuidar.” — Desenvolvido por Mariane Goch &amp; Carlos Morevi</p>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('form-agendamento');
+  var filtro = document.getElementById('filtro');
+  var limpar = document.getElementById('limpar-filtro');
+  var resumo = document.getElementById('resumo');
+  var semResultado = document.getElementById('sem-resultado');
+  var caixas = Array.prototype.slice.call(document.querySelectorAll('input[name="exames"]'));
+
+  document.getElementById('bloco-filtro').hidden = false;
+
+  // Data mínima = hoje
+  var hoje = new Date();
+  hoje.setMinutes(hoje.getMinutes() - hoje.getTimezoneOffset());
+  document.getElementById('data').min = hoje.toISOString().slice(0, 10);
+
+  function normalizar(t) {
+    return t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+  }
+
+  function rotulo(c) { return document.querySelector('label[for="' + c.id + '"]').textContent; }
+
+  function aplicarFiltro() {
+    var termo = normalizar(filtro.value);
+    var visiveis = 0;
+    document.querySelectorAll('.subgrupo').forEach(function (sg) {
+      var titulo = normalizar(sg.querySelector('.subgrupo-titulo').textContent);
+      var algum = false;
+      sg.querySelectorAll('.opcao').forEach(function (op) {
+        var texto = normalizar(op.textContent);
+        var mostra = !termo || texto.indexOf(termo) !== -1 || titulo.indexOf(termo) !== -1;
+        op.hidden = !mostra;
+        if (mostra) { algum = true; visiveis++; }
+      });
+      sg.hidden = !algum;
+    });
+    document.querySelectorAll('.grupo-exames').forEach(function (fs) {
+      fs.hidden = !fs.querySelector('.subgrupo:not([hidden])');
+    });
+    semResultado.hidden = visiveis > 0;
+    anunciar(termo ? (visiveis ? (visiveis === 1 ? '1 exame encontrado.' : visiveis + ' exames encontrados.')
+                               : 'Nenhum exame encontrado. Tente outro termo ou limpe o filtro.')
+                   : 'Filtro limpo. Todos os exames estão visíveis.');
+  }
+
+  // Anuncia o resultado do filtro ao leitor de tela depois que a pessoa para de digitar
+  var statusFiltro = document.getElementById('status-filtro');
+  var espera;
+  function anunciar(texto) {
+    clearTimeout(espera);
+    espera = setTimeout(function () { statusFiltro.textContent = texto; }, 600);
+  }
+
+  function atualizarResumo() {
+    var marcados = caixas.filter(function (c) { return c.checked; });
+    if (!marcados.length) {
+      resumo.textContent = 'Nenhum exame selecionado.';
+    } else {
+      resumo.textContent = (marcados.length === 1 ? '1 exame selecionado: ' : marcados.length + ' exames selecionados: ')
+        + marcados.map(rotulo).join(', ') + '.';
+    }
+    caixas[0].setCustomValidity('');
+  }
+
+  filtro.addEventListener('input', aplicarFiltro);
+  limpar.addEventListener('click', function () {
+    filtro.value = '';
+    aplicarFiltro();
+    filtro.focus();
+  });
+  caixas.forEach(function (c) { c.addEventListener('change', atualizarResumo); });
+
+  form.addEventListener('submit', function (e) {
+    if (!caixas.some(function (c) { return c.checked; })) {
+      e.preventDefault();
+      filtro.value = '';
+      aplicarFiltro();
+      caixas[0].setCustomValidity('Marque pelo menos um exame.');
+      caixas[0].reportValidity();
+    }
+  });
+})();
+</script>
+</body>
+</html>

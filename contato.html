@@ -8,34 +8,47 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="estilo.css">
+  <script src="menu.js" defer></script>
 </head>
 <body>
 
 <a class="pular" href="#conteudo">Pular para o conteúdo principal</a>
 
 <header class="header">
-  <h1 class="logo"><a href="index.html">SAÚDE EM DIA</a></h1>
+  <a class="logo" href="index.html">SAÚDE EM DIA</a>
 
-  <nav class="nav" aria-label="Navegação principal">
-    <ul class="nav-links">
-      <li><a href="sobre.html">Sobre nós</a></li>
-      <li><a href="index.html#servicos">Serviços</a></li>
-      <li><a href="sobre.html#pacientes">Para pacientes</a></li>
-      <li><a href="sobre.html#clinicas">Para clínicas</a></li>
-      <li><a href="contato.html" aria-current="page">Contato</a></li>
-    </ul>
-  </nav>
+  <button type="button" class="btn btn-menu" aria-expanded="false" aria-controls="menu-principal">
+    <svg class="icone-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" focusable="false">
+      <path class="traco-1" d="M4 7h16"/><path class="traco-2" d="M4 12h16"/><path class="traco-3" d="M4 17h16"/>
+    </svg>
+    MENU
+  </button>
 
-  <div class="nav-actions">
-    <a class="btn" href="contato.html#formulario">CRIAR PERFIL</a>
-    <a class="btn" href="#">ENTRAR</a>
+  <div class="menu-painel" id="menu-principal">
+    <nav class="nav" aria-label="Navegação principal">
+      <ul class="nav-links">
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="index.html#servicos">Serviços</a></li>
+        <li><a href="sobre.html#pacientes">Para pacientes</a></li>
+        <li><a href="sobre.html#clinicas">Para clínicas</a></li>
+        <li><a href="exames.html">Exames</a></li>
+        <li><a href="agendamento.html">Agendamento</a></li>
+        <li><a href="parceiros.html">Parceiros</a></li>
+        <li><a href="contato.html" aria-current="page">Contato</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="btn" href="contato.html#formulario">CRIAR PERFIL</a>
+      <a class="btn" href="emconstrucao.html">ENTRAR</a>
+    </div>
   </div>
 </header>
 
 <main class="main" id="conteudo">
 
   <section class="secao" id="formulario">
-    <h2>Contato e pré-cadastro</h2>
+    <h1>Contato e pré-cadastro</h1>
     <p class="texto-largo">Conte um pouco sobre você e sobre o que procura. Os campos com asterisco (*) são obrigatórios.</p>
 
     <form class="formulario" action="#" method="post">
@@ -104,7 +117,7 @@
         <p class="dica" id="dica-mensagem">Escreva sua dúvida ou sugestão.</p>
       </div>
 
-      <button class="btn" type="submit" aria-label="Enviar pré-cadastro do Saúde em Dia">ENVIAR</button>
+      <button class="btn" type="submit">ENVIAR</button>
     </form>
   </section>
 
@@ -113,7 +126,7 @@
 <footer class="footer">
   <ul class="social">
     <li>
-      <a href="#" aria-label="Instagram">
+      <a href="https://www.instagram.com/" aria-label="Instagram">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <rect x="3" y="3" width="18" height="18" rx="5"/>
           <circle cx="12" cy="12" r="4"/>
@@ -123,7 +136,7 @@
       </a>
     </li>
     <li>
-      <a href="#" aria-label="YouTube">
+      <a href="https://www.youtube.com/" aria-label="YouTube">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.5 12 31 31 0 0 0 2 15.8a3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1c.4-1.9.5-3.8.5-3.8s0-1.9-.5-3.8Z"/>
           <path d="m10 15 5-3-5-3v6Z" fill="currentColor" stroke="none"/>
@@ -132,7 +145,7 @@
       </a>
     </li>
     <li>
-      <a href="#" aria-label="Facebook">
+      <a href="https://www.facebook.com/" aria-label="Facebook">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2Z"/>
         </svg>
@@ -140,7 +153,7 @@
       </a>
     </li>
     <li>
-      <a href="#" aria-label="LinkedIn">
+      <a href="https://www.linkedin.com/" aria-label="LinkedIn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z"/>
           <rect x="2" y="9" width="4" height="12"/>
@@ -151,7 +164,7 @@
     </li>
   </ul>
 
-  <p class="creditos">© 2026 Saúde em Dia — Desenvolvido por Mariane Goch &amp; Carlos Morevi</p>
+  <p class="creditos">© 2026 Saúde em Dia: “Prevenir, diagnosticar e cuidar.” — Desenvolvido por Mariane Goch &amp; Carlos Morevi</p>
 </footer>
 
 </body>
