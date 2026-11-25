@@ -1,8 +1,7 @@
 SAÚDE EM DIA - Pré-Projeto
 
 Objetivo:
-Aplicativo que reúne busca, agendamento, preparo, resultados e histórico
-de exames médicos em um só lugar.
+Plataforma que reúne busca, agendamento, preparo, resultados e histórico de exames médicos em um só lugar.
 
 Dupla: Mariane Goch e Carlos Morevi
 
