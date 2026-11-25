@@ -4,25 +4,50 @@ Objetivo:
 Aplicativo que reúne busca, agendamento, preparo, resultados e histórico
 de exames médicos em um só lugar.
 
-Dupla: Mariana e Carlos
+Dupla: Mariane Goch e Carlos Morevi
 
 Páginas criadas:
-- index.html   : página inicial (apresentação do app, serviços e como funciona)
-- sobre.html   : sobre nós, para pacientes e para clínicas
-- contato.html : formulário de contato e pré-cadastro (acessível)
+- index.html        : página inicial (destaque, o que o app oferece e como funciona)
+- sobre.html        : sobre nós, para pacientes e para clínicas
+- contato.html      : formulário de contato e pré-cadastro (acessível)
+- exames.html       : exames laboratoriais, de imagem e cardiologia e check-ups prontos
+- agendamento.html  : formulário de agendamento com filtro de exames (acessível)
+- parceiros.html    : hospitais, clínicas e consultórios parceiros
+- emconstrucao.html : aviso de site em construção (destino do botão ENTRAR)
 
 Outros arquivos:
-- estilo.css               : estilos de todas as páginas
-- app-exames.svg           : imagem ilustrativa do app
-- fundo-hero.svg           : imagem de fundo da home page
+- estilo.css          : estilos de todas as páginas
+- menu.js             : menu recolhível para celular
+- app-exames.svg      : imagem ilustrativa do app
+- images/fundo_1.png  : imagem do destaque da home page
 
 O que já foi feito:
-- Estrutura semântica (header, nav, main, section, footer) nas 3 páginas
-- Menu de navegação em todas as páginas
-- Formulário com label/for, fieldset/legend, required, minlength e aria-describedby
-- Estilo de foco (:focus) visível e fonte mínima de 18px
+- Estrutura semântica (header, nav, main, section, footer) em todas as páginas
+- Menu com 8 links em caixa alta e indicação da página atual
+- Menu recolhível no celular (botão MENU; tecla Esc fecha; funciona sem JavaScript)
+- Botão ENTRAR direcionado para a página Em construção
+- Destaque da home com imagem inteira e responsiva, sem cortes
+- Texto do destaque sobre a imagem no desktop e abaixo dela em tablet e celular
+- Serviços com títulos em caixa alta na cor #ffff66 e ícones SVG de 80 px
+- Como funciona com imagem à esquerda e passos numerados em destaque à direita
+- Página de exames com ícones SVG de 80 px em cada categoria
+- Agendamento com filtro de exames que mantém os itens já selecionados
+- Agendamento com resumo dos exames escolhidos, data mínima e período
+- Parceiros em lista simples, organizada em três colunas
+- Rodapé com links das redes sociais e novo texto de créditos
+- Um título h1 por página, sem pular níveis de título
+- Foco visível ao navegar pelo teclado (:focus-visible)
+- Ícones decorativos ocultos do leitor de tela; imagens com texto alternativo
+- Resultado do filtro de exames anunciado ao leitor de tela
+- Fonte mínima de 18 px e animações que respeitam a opção de reduzir movimento
+- Auditoria automática WCAG 2.2 AA (axe-core): nenhuma violação nas 7 páginas
+- Repositório no GitHub limpo e atualizado com a versão final
 
 Pendente:
+- Conferir o site publicado no GitHub Pages
 - Testar com teclado (Tab, Setas, Enter) e NVDA (H, D, K, F)
-- Validar o código HTML e CSS
-- Criar a página de login (botão ENTRAR ainda sem destino)
+- Validar o código HTML e CSS (validador W3C)
+- Ligar os formulários de contato e agendamento a um envio real
+- Criar a página de login (ENTRAR ainda leva à página Em construção)
+- Trocar os links das redes sociais pelos perfis oficiais do Saúde em Dia
+- Remover as imagens não utilizadas (fundo.png e fundo-hero.svg)
