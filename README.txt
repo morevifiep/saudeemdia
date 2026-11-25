@@ -44,10 +44,9 @@ O que já foi feito:
 - Repositório no GitHub limpo e atualizado com a versão final
 
 Pendente:
-- Conferir o site publicado no GitHub Pages
-- Testar com teclado (Tab, Setas, Enter) e NVDA (H, D, K, F)
+- Conferir o site publicado no GitHub Pages (OK)
+- Testar com teclado (Tab, Setas, Enter) e NVDA (H, D, K, F) (Pedir ajuda da Terezinha ou Bruna)
 - Validar o código HTML e CSS (validador W3C)
-- Ligar os formulários de contato e agendamento a um envio real
+- Ligar os formulários de contato e agendamento a um envio real (Não vai rolar =/...)
 - Criar a página de login (ENTRAR ainda leva à página Em construção)
 - Trocar os links das redes sociais pelos perfis oficiais do Saúde em Dia
-- Remover as imagens não utilizadas (fundo.png e fundo-hero.svg)
