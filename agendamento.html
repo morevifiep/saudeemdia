@@ -49,7 +49,8 @@
 
   <section class="secao" id="formulario">
     <h1>Agendamento de exames</h1>
-    <p class="texto-largo">Escolha os exames, informe seus dados e a data de preferência. Entraremos em contato para confirmar local e horário. Os campos com asterisco (*) são obrigatórios.</p>
+    <p class="etapa" id="etapa">Etapa 1 de 2: dados e exames</p>
+    <p class="texto-largo" id="intro-agendamento">Escolha os exames, informe seus dados e a data de preferência. Entraremos em contato para confirmar local e horário. Os campos com asterisco (*) são obrigatórios.</p>
 
     <form class="formulario formulario-largo" action="#" method="post" id="form-agendamento">
 
@@ -302,8 +303,41 @@
         <p class="dica" id="dica-mensagem">Informe pedido médico, convênio ou outra informação útil.</p>
       </div>
 
-      <button class="btn" type="submit">SOLICITAR AGENDAMENTO</button>
+      <button class="btn" type="submit" id="btn-revisar">REVISAR DADOS</button>
     </form>
+
+    <!-- Etapa 2: revisão (preenchida pelo script a partir do formulário) -->
+    <div class="revisao" id="revisao" hidden>
+      <h2 id="titulo-revisao" tabindex="-1">Revise seus dados</h2>
+      <p class="texto-largo">Confira as informações abaixo. Se algo estiver errado, volte e edite antes de enviar.</p>
+
+      <dl class="revisao-dados">
+        <dt>Nome completo</dt>        <dd id="rev-nome"></dd>
+        <dt>E-mail</dt>               <dd id="rev-email"></dd>
+        <dt>Telefone</dt>             <dd id="rev-telefone"></dd>
+        <dt>Data de preferência</dt>  <dd id="rev-data"></dd>
+        <dt>Período</dt>              <dd id="rev-periodo"></dd>
+        <dt>Observações</dt>          <dd id="rev-mensagem"></dd>
+      </dl>
+
+      <h3 id="titulo-rev-exames">Exames selecionados</h3>
+      <ul class="lista-simples revisao-exames" id="rev-exames" aria-labelledby="titulo-rev-exames"></ul>
+
+      <div class="acoes">
+        <button type="button" class="btn btn-secundario" id="btn-editar">VOLTAR E EDITAR</button>
+        <button type="button" class="btn" id="btn-enviar">ENVIAR AGENDAMENTO</button>
+      </div>
+    </div>
+
+    <!-- Confirmação após o envio -->
+    <div class="revisao" id="confirmacao" hidden>
+      <h2 id="titulo-confirmacao" tabindex="-1">Solicitação enviada!</h2>
+      <p class="texto-largo" id="texto-confirmacao"></p>
+      <div class="acoes">
+        <a class="btn" href="index.html">VOLTAR AO INÍCIO</a>
+        <a class="btn btn-secundario" href="agendamento.html">FAZER OUTRO AGENDAMENTO</a>
+      </div>
+    </div>
   </section>
 
 </main>
@@ -424,14 +458,82 @@
   });
   caixas.forEach(function (c) { c.addEventListener('change', atualizarResumo); });
 
+  // ---------- Etapas: formulário → revisão → confirmação ----------
+  var etapa = document.getElementById('etapa');
+  var intro = document.getElementById('intro-agendamento');
+  var revisao = document.getElementById('revisao');
+  var confirmacao = document.getElementById('confirmacao');
+  var tituloPagina = document.title;
+
+  function texto(id, valor) { document.getElementById(id).textContent = valor; }
+
+  function formatarData(iso) {
+    if (!iso) return 'Não informada';
+    var p = iso.split('-');
+    return p[2] + '/' + p[1] + '/' + p[0];
+  }
+
+  function mostrarRevisao() {
+    texto('rev-nome', form.nome.value.trim());
+    texto('rev-email', form.email.value.trim());
+    texto('rev-telefone', form.telefone.value.trim() || 'Não informado');
+    texto('rev-data', formatarData(form.data.value));
+    var periodo = form.querySelector('input[name="periodo"]:checked');
+    texto('rev-periodo', periodo ? rotulo(periodo) : 'Não informado');
+    texto('rev-mensagem', form.mensagem.value.trim() || 'Nenhuma');
+
+    var lista = document.getElementById('rev-exames');
+    lista.textContent = '';
+    var marcados = caixas.filter(function (c) { return c.checked; });
+    marcados.forEach(function (c) {
+      var li = document.createElement('li');
+      li.textContent = rotulo(c);
+      lista.appendChild(li);
+    });
+    texto('titulo-rev-exames', 'Exames selecionados (' + marcados.length + ')');
+
+    form.hidden = true;
+    intro.hidden = true;
+    revisao.hidden = false;
+    etapa.textContent = 'Etapa 2 de 2: revisão';
+    document.title = 'Revisão | ' + tituloPagina;
+    document.getElementById('titulo-revisao').focus();
+  }
+
+  function voltarParaEdicao() {
+    revisao.hidden = true;
+    form.hidden = false;
+    intro.hidden = false;
+    etapa.textContent = 'Etapa 1 de 2: dados e exames';
+    document.title = tituloPagina;
+    document.getElementById('btn-revisar').focus();
+  }
+
   form.addEventListener('submit', function (e) {
+    // O navegador só chega aqui se os campos obrigatórios estiverem válidos
+    e.preventDefault();
     if (!caixas.some(function (c) { return c.checked; })) {
-      e.preventDefault();
       filtro.value = '';
       aplicarFiltro();
       caixas[0].setCustomValidity('Marque pelo menos um exame.');
       caixas[0].reportValidity();
+      return;
     }
+    mostrarRevisao();
+  });
+
+  document.getElementById('btn-editar').addEventListener('click', voltarParaEdicao);
+
+  document.getElementById('btn-enviar').addEventListener('click', function () {
+    // Protótipo: ainda não há servidor. Quando houver, envie os dados aqui,
+    // por exemplo com fetch(form.action, { method: 'POST', body: new FormData(form) }).
+    revisao.hidden = true;
+    etapa.hidden = true;
+    texto('texto-confirmacao', 'Recebemos o seu pedido de agendamento. Em breve entraremos em contato pelo e-mail '
+      + form.email.value.trim() + ' para confirmar local e horário.');
+    confirmacao.hidden = false;
+    document.title = 'Solicitação enviada | ' + tituloPagina;
+    document.getElementById('titulo-confirmacao').focus();
   });
 })();
 </script>
