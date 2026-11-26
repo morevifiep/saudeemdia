@@ -1,29 +1,77 @@
-:root {
-  --cor-header-fundo:      #2F7A45;
-  --cor-header-texto:      #FFFFFF;
-  --cor-botao-fundo:       #1F5233;
-  --cor-botao-texto:       #FFFFFF;
-  --cor-corpo-fundo:       #000000;
-  --cor-corpo-texto:       #D6D6D6;
-  --cor-titulo:            #FFFFFF;
-  --cor-cartao-fundo:      #1F5233;
-  --cor-cartao-borda:      #2F7A45;
-  --cor-cartao-texto:      #FFFFFF;
-  --cor-borda:             #3b3b3b;
-  --cor-campo-fundo:       #121212;
-  --cor-campo-texto:       #FFFFFF;
-  --cor-destaque:          #47975D;
-  --cor-footer-fundo:      #3b3b3b;
-  --cor-footer-texto:      #FFFFFF;
-  --cor-foco:              #FFD54A;
-  --cor-amarelo:           #ffff66;
-  --cor-hero-chamada:      #FFFFFF;
-  --cor-hero-destaque:     #a5a5a5;
-  --margem:                clamp(32px, 5vw, 80px);
+/* =====================================================================
+   SAÚDE EM DIA — estilo.css
 
+   Tive que montar esse índice, de forma bem didática, pra gente não se perder
+   1. PAINEL DE CORES
+   2. Base
+   3. Cabeçalho e menu
+   4. Botões
+   5. Seções e textos
+   6. Destaque da página inicial (hero)
+   7. Caixas de destaque (cartões) e listas
+   8. Formulários
+   9. Rodapé
+   10. Telas menores
+   ===================================================================== */
+
+
+/* =====================================================================
+   1. PAINEL DE CORES
+   Todas as cores do site estão aqui. Mude o valor da variável e a cor
+   muda em todas as páginas de uma vez.
+   ===================================================================== */
+:root {
+  /* --- Página --------------------------------------------------------- */
+  --cor-fundo:              #e5e5e5;  /* fundo de todas as páginas */
+  --cor-texto:              #333333;  /* texto de corpo (parágrafos, listas, dicas) */
+  --cor-titulo:             #2f7a45;  /* títulos h1, h2, h3 e rótulos de formulário */
+  --cor-texto-destaque:     #1F5233;  /* palavras em destaque sobre o fundo claro
+                                         (subtítulos do agendamento, aviso "em construção",
+                                         frase do destaque no celular) */
+  --cor-linha:              #7cb48c;  /* linhas que separam as seções */
+
+  /* --- Cabeçalho ------------------------------------------------------ */
+  --cor-header-fundo:       #1F5233;
+  --cor-header-texto:       #FFFFFF;
+
+  /* --- Botões --------------------------------------------------------- */
+  --cor-botao-fundo:        #2F7A45;
+  --cor-botao-texto:        #FFFFFF;
+
+  /* --- Caixas de destaque (cartões verdes) ---------------------------- */
+  --cor-caixa-fundo:        #2F7A45;
+  --cor-caixa-borda:        #FFFFFF;
+  --cor-caixa-texto:        #FFFFFF;  /* texto dentro das caixas */
+  --cor-caixa-titulo:       #ffff66;  /* títulos e ícones dentro das caixas */
+
+  /* --- Destaque da página inicial (texto sobre a imagem) -------------- */
+  --cor-hero-texto:         #FFFFFF;  /* "Uma plataforma que reúne" / "em um só lugar." */
+  --cor-hero-destaque:      #ffff66;  /* BUSCA, AGENDAMENTO, PREPARO... */
+
+  /* --- Formulários ---------------------------------------------------- */
+  --cor-campo-fundo:        #FFFFFF;
+  --cor-campo-texto:        #333333;
+  --cor-campo-borda:        #7cb48c;
+  --cor-marcacao:           #2F7A45;  /* checkbox e botão de opção marcados */
+  --cor-resumo-fundo:       #afdd87;
+
+  /* --- Rodapé --------------------------------------------------------- */
+  --cor-footer-fundo:       #3b3b3b;
+  --cor-footer-texto:       #FFFFFF;
+
+  /* --- Foco do teclado ------------------------------------------------ */
+  --cor-foco:               #0064eb;  /* contorno de foco sobre o fundo claro */
+  --cor-foco-escuro:        #FFFFFF;  /* contorno de foco no cabeçalho e no rodapé */
+
+  /* --- Medidas -------------------------------------------------------- */
+  --margem: clamp(32px, 5vw, 80px);
   --fonte: "Nunito", "Varela Round", ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
 }
 
+
+/* =====================================================================
+   2. BASE
+   ===================================================================== */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body { height: 100%; }
@@ -33,59 +81,58 @@ body {
   flex-direction: column;
   min-height: 100vh;
   font-family: var(--fonte);
-  font-size: 1.125rem; /* 18px */
+  font-size: 1.125rem;  /* 18px */
   line-height: 1.6;
-  background: var(--cor-corpo-fundo);
-  color: var(--cor-corpo-texto);
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
 }
 
-a { text-decoration: none; color: inherit; }
+a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; }
+[hidden] { display: none !important; }
 
-/* Foco visível para navegação por teclado (não aparece no clique do mouse) */
-a:focus-visible,
-input:focus-visible,
-button:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
+/* Foco visível só na navegação por teclado */
+:focus-visible {
   outline: 3px solid var(--cor-foco);
   outline-offset: 3px;
   border-radius: 6px;
 }
+.header, .footer { --cor-foco: var(--cor-foco-escuro); }
 
-/* Texto só para leitores de tela */
+/* Texto lido apenas por leitores de tela */
 .sr-only {
   position: absolute;
   width: 1px;
   height: 1px;
-  padding: 0;
   margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-  border: 0;
 }
 
+/* Link "Pular para o conteúdo principal" */
 .pular {
   position: absolute;
   left: -9999px;
   top: 8px;
+  z-index: 10;
   padding: 12px 20px;
-  background: var(--cor-foco);
+  background: var(--cor-foco-escuro);
   color: #000;
   font-weight: 800;
   border-radius: 8px;
-  z-index: 10;
 }
-
 .pular:focus { left: 8px; }
 
-/* ---------- Cabeçalho ---------- */
+
+/* =====================================================================
+   3. CABEÇALHO E MENU
+   ===================================================================== */
 .header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
   gap: 16px 24px;
   padding: 40px var(--margem);
   background: var(--cor-header-fundo);
@@ -93,38 +140,14 @@ select:focus-visible {
 }
 
 .logo {
-  display: inline-block;
   font-weight: 900;
   font-size: clamp(1.6rem, 4vw, 2.2rem);
   line-height: 1.2;
   letter-spacing: 0.02em;
 }
 
-.nav {
-  display: flex;
-  align-items: center;
-}
-
-/* No desktop o painel não interfere no layout: nav e botões seguem como filhos do header */
+/* No desktop o painel não altera o layout; no celular vira o menu recolhível */
 .menu-painel { display: contents; }
-
-/* Botão do menu: só aparece no celular e só quando o JavaScript está ativo */
-.header .btn-menu {
-  display: none;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 18px;
-}
-
-.icone-menu { width: 24px; height: 24px; }
-.icone-menu path {
-  transition: transform 0.2s, opacity 0.2s;
-  transform-box: view-box;
-  transform-origin: 12px 12px;
-}
-.menu-aberto .icone-menu .traco-1 { transform: rotate(45deg) translateY(5px); }
-.menu-aberto .icone-menu .traco-2 { opacity: 0; }
-.menu-aberto .icone-menu .traco-3 { transform: rotate(-45deg) translateY(-5px); }
 
 .nav-links {
   display: flex;
@@ -133,14 +156,12 @@ select:focus-visible {
 }
 
 .nav-links a {
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 1.125rem;
   padding: 4px 0;
   border-bottom: 2px solid transparent;
+  font-weight: 600;
+  text-transform: uppercase;
   transition: border-color 0.2s;
 }
-
 .nav-links a:hover,
 .nav-links a[aria-current="page"] { border-bottom-color: var(--cor-header-texto); }
 
@@ -150,74 +171,121 @@ select:focus-visible {
   gap: 12px 28px;
 }
 
+/* Botão MENU (aparece só no celular, com JavaScript ativo) */
+.header .btn-menu {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+}
+.icone-menu { width: 24px; height: 24px; }
+.icone-menu path {
+  transition: transform 0.2s, opacity 0.2s;
+  transform-box: view-box;
+  transform-origin: 12px 12px;
+}
+.menu-aberto .traco-1 { transform: rotate(45deg) translateY(5px); }
+.menu-aberto .traco-2 { opacity: 0; }
+.menu-aberto .traco-3 { transform: rotate(-45deg) translateY(-5px); }
+
+
+/* =====================================================================
+   4. BOTÕES
+   ===================================================================== */
 .btn {
   display: inline-block;
   padding: 14px 26px;
   background: var(--cor-botao-fundo);
   color: var(--cor-botao-texto);
   border: 2px solid var(--cor-botao-texto);
-  font-family: inherit;
-  font-weight: 800;
-  font-size: 1.125rem;
-  letter-spacing: 0.04em;
   border-radius: 10px;
+  font: 800 1.125rem/1.6 var(--fonte);
+  letter-spacing: 0.04em;
   cursor: pointer;
   transition: filter 0.2s;
 }
-
 .btn:hover { filter: brightness(1.2); }
 
-/* ---------- Conteúdo ---------- */
+/* Botão secundário (ex.: LIMPAR FILTRO) */
+.btn-secundario {
+  padding: 10px 18px;
+  font-size: 1rem;
+  background: transparent;
+  color: var(--cor-texto);
+  border-color: var(--cor-texto);
+}
+
+/* Grupo de botões no fim de uma seção */
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 20px;
+  margin-top: 40px;
+}
+
+
+/* =====================================================================
+   5. SEÇÕES E TEXTOS
+   ===================================================================== */
 .main { flex: 1; }
 
 .secao {
   padding: 64px var(--margem);
-  border-bottom: 1px solid var(--cor-borda);
+  border-bottom: 1px solid var(--cor-linha);
 }
-
 .secao:last-child { border-bottom: none; }
-
-/* Sem linha divisória embaixo da imagem do destaque */
-.secao.hero { border-bottom: none; }
 
 .secao h1,
 .secao h2 {
-  color: var(--cor-titulo);
-  font-weight: 800;
-  font-size: 2rem;
-  line-height: 1.2;
   margin-bottom: 16px;
+  color: var(--cor-titulo);
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
 }
 
 .secao h3,
 .secao .subtitulo {
-  color: var(--cor-titulo);
-  font-weight: 800;
-  font-size: 1.375rem;
   margin-bottom: 8px;
+  color: var(--cor-titulo);
+  font-size: 1.375rem;
+  font-weight: 800;
 }
 
 .secao p + p,
 .secao p + ul,
 .secao p + ol { margin-top: 16px; }
+.secao p + .subtitulo { margin-top: 40px; }
 
 .texto-largo { max-width: 70ch; }
 .texto-medio { max-width: 100ch; }
 
-/* A caixa do destaque segue a proporção da imagem (1920 × 840): ocupa toda a largura
-   e a altura correspondente, mostrando a imagem inteira, sem véu escuro.
-   Se o texto precisar de mais altura (telas estreitas), a caixa cresce e a imagem
-   cobre o espaço sem distorcer. */
-/* Imagem e texto ocupam a mesma célula do grid: a imagem mantém sempre
-   sua proporção original (largura 100%, altura automática), então nunca é cortada;
-   ela apenas reduz conforme a janela. */
-.hero {
-  display: grid;
-  padding: 0;
-  background: var(--cor-corpo-fundo);
+/* Página "Em construção" */
+.aviso { padding-block: 120px; }
+.aviso-titulo.aviso-titulo {
+  max-width: 20ch;
+  margin-bottom: 20px;
+  color: var(--cor-texto-destaque);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 900;
+}
+.aviso-texto {
+  max-width: 40ch;
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
 }
 
-/* A imagem é um <img> (e não fundo CSS) para poder ter texto alternativo */
+
+/* =====================================================================
+   6. DESTAQUE DA PÁGINA INICIAL (HERO)
+   Imagem e texto ocupam a mesma célula do grid: a imagem mantém sempre a
+   proporção original (largura 100%, altura automática) e nunca é cortada.
+   ===================================================================== */
+.secao.hero {
+  display: grid;
+  padding: 0;
+  border-bottom: none;
+}
+
 .hero-imagem {
   grid-area: 1 / 1;
   align-self: start;
@@ -228,58 +296,54 @@ select:focus-visible {
 
 .hero-conteudo {
   grid-area: 1 / 1;
-  position: relative;
   align-self: center;
+  position: relative;
   padding: 32px var(--margem);
-}
-
-/* Sombra suave atrás das letras: garante leitura sobre as áreas claras da imagem */
-.hero-conteudo > * {
+  /* sombra suave atrás das letras: leitura garantida sobre a imagem */
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9), 0 0 3px rgba(0, 0, 0, 0.9);
 }
 
-.hero .temp-text { margin: 0; }
+.temp-text {
+  max-width: 22ch;
+  color: var(--cor-hero-texto);
+  font-size: clamp(1.5rem, 5.5vw, 2.5rem);
+  line-height: 1.2;
+}
 
 .secao .hero-text {
   max-width: 22ch;
-  text-align: left;
-  font-weight: 900;
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  line-height: 1.2;
-  color: var(--cor-amarelo);
   margin: 6px 0;
-}
-
-.hero-text strong { color: var(--cor-amarelo); font-weight: 900; }
-
-.temp-text {
-  max-width: 22ch;
-  text-align: left;
-  font-weight: 400;
-  font-size: clamp(1.5rem, 5.5vw, 2.5rem);
+  color: var(--cor-hero-destaque);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 900;
   line-height: 1.2;
-  color: var(--cor-hero-chamada);
 }
 
 
+/* =====================================================================
+   7. CAIXAS DE DESTAQUE (CARTÕES) E LISTAS
+   ===================================================================== */
 .lista-cartoes {
+  --colunas: 4;  /* máximo de caixas por linha */
+  --espaco: 20px;  /* espaço entre as caixas */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill,
+    minmax(max(240px, calc((100% - (var(--colunas) - 1) * var(--espaco)) / var(--colunas))), 1fr));
+  gap: var(--espaco);
   margin-top: 32px;
 }
+#servicos .lista-cartoes { --colunas: 5; }  /* página inicial: 5 caixas na linha */
 
 .cartao {
   padding: 24px;
-  background: var(--cor-cartao-fundo);
-  border: 1px solid var(--cor-cartao-borda);
+  background: var(--cor-caixa-fundo);
+  border: 3px solid var(--cor-caixa-borda);
   border-radius: 14px;
+  color: var(--cor-caixa-texto);
 }
 
-.cartao p { color: var(--cor-cartao-texto); }
-
-.cartao h3 {
-  color: var(--cor-amarelo);
+.secao .cartao h3 {
+  color: var(--cor-caixa-titulo);
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }
@@ -289,10 +353,18 @@ select:focus-visible {
   width: 80px;
   height: 80px;
   margin-bottom: 16px;
-  color: var(--cor-amarelo);
+  color: var(--cor-caixa-titulo);
 }
 
-/* ---------- Como funciona: imagem à esquerda, lista à direita ---------- */
+/* Lista com marcadores */
+.lista-simples {
+  margin-top: 16px;
+  padding-left: 1.5em;
+  list-style: disc;
+}
+.lista-simples li { padding: 4px 0; }
+
+/* "Como funciona": imagem à esquerda, passos numerados à direita */
 .como-funciona {
   display: grid;
   grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
@@ -301,62 +373,30 @@ select:focus-visible {
   margin-top: 32px;
 }
 
-.como-funciona .foto-destaque { margin-top: 0; }
-.como-funciona .lista-passos { margin-top: 0; }
-
-/* ---------- Página Em construção ---------- */
-.aviso { padding-top: 120px; padding-bottom: 120px; }
-
-.aviso .aviso-titulo {
-  max-width: 20ch;
-  font-weight: 900;
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  line-height: 1.2;
-  color: var(--cor-amarelo);
-  margin-bottom: 20px;
+.foto-destaque {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: 14px;
 }
 
-.aviso .aviso-texto {
-  max-width: 40ch;
-  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-  color: var(--cor-hero-chamada);
-}
-
-.acoes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px 20px;
-  margin-top: 40px;
-}
-
-.lista-passos {
-  list-style: decimal;
-  padding-left: 1.5em;
-  margin-top: 16px;
-}
-
-.lista-passos li { padding: 4px 0; }
-
-/* Como funciona: passos com número em destaque */
 .passos-destaque {
-  list-style: none;
-  counter-reset: passo;
-  padding-left: 0;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  counter-reset: passo;
 }
 
 .passos-destaque li {
-  counter-increment: passo;
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 0;
+  color: var(--cor-titulo);
   font-size: clamp(1.25rem, 2.2vw, 1.5rem);
   font-weight: 600;
   line-height: 1.35;
-  color: var(--cor-titulo);
+  counter-increment: passo;
 }
 
 .passos-destaque li::before {
@@ -367,46 +407,27 @@ select:focus-visible {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--cor-cartao-fundo);
-  border: 2px solid var(--cor-destaque);
-  color: var(--cor-amarelo);
+  background: var(--cor-caixa-fundo);
+  border: 2px solid var(--cor-caixa-borda);
+  color: var(--cor-caixa-titulo);
   font-size: 1.75rem;
   font-weight: 900;
   line-height: 1;
 }
 
-/* Sobre: respiro antes do subtítulo */
-.secao p + .subtitulo { margin-top: 40px; }
-
-/* Parceiros: lista simples em colunas */
+/* Parceiros: listas em colunas */
 .parceiros-colunas {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 32px 48px;
   margin-top: 40px;
 }
-
 .grupo-parceiros .lista-simples { margin-top: 8px; }
-.grupo-parceiros .lista-simples li { color: var(--cor-titulo); }
 
-.lista-simples {
-  list-style: disc;
-  padding-left: 1.5em;
-  margin-top: 16px;
-}
 
-.lista-simples li { padding: 4px 0; }
-
-.foto-destaque {
-  display: block;
-  width: 100%;
-  max-width: 420px;
-  height: auto;
-  margin-top: 32px;
-  border-radius: 14px;
-}
-
-/* ---------- Formulário ---------- */
+/* =====================================================================
+   8. FORMULÁRIOS
+   ===================================================================== */
 .formulario {
   display: flex;
   flex-direction: column;
@@ -414,98 +435,35 @@ select:focus-visible {
   max-width: 640px;
   margin-top: 32px;
 }
+.formulario-largo { max-width: 900px; }
 
 .campo label,
 .formulario legend {
   display: block;
+  margin-bottom: 8px;
   color: var(--cor-titulo);
   font-weight: 800;
-  margin-bottom: 8px;
 }
+.formulario legend { margin-bottom: 0; padding: 0 8px; }
 
-.formulario legend { padding: 0 8px; margin-bottom: 0; }
-
-.formulario input[type="text"],
-.formulario input[type="email"],
-.formulario input[type="tel"],
-.formulario input[type="search"],
-.formulario input[type="date"],
+.formulario input:is([type="text"], [type="email"], [type="tel"], [type="search"], [type="date"]),
 .formulario textarea {
   width: 100%;
   padding: 12px 14px;
   background: var(--cor-campo-fundo);
   color: var(--cor-campo-texto);
-  border: 2px solid var(--cor-corpo-texto);
+  border: 1px solid var(--cor-campo-borda);
   border-radius: 10px;
-  font-family: inherit;
-  font-size: 1.125rem;
+  font: inherit;
 }
-
 .formulario textarea { min-height: 140px; resize: vertical; }
+.formulario input[type="date"] { max-width: 260px; }
 
-.formulario input[type="date"] { color-scheme: dark; max-width: 260px; }
-
-/* ---------- Agendamento: filtro de exames ---------- */
-[hidden] { display: none !important; }
-
-.formulario-largo { max-width: 900px; }
-
-.filtro-linha {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: center;
-}
-
-.filtro-linha input[type="search"] { flex: 1 1 260px; }
-
-.btn-secundario {
-  padding: 10px 18px;
-  font-size: 1rem;
-  background: transparent;
-  border-color: var(--cor-corpo-texto);
-  color: var(--cor-campo-texto);
-}
-
-.resumo-selecao {
-  margin-top: 16px;
-  padding: 14px 18px;
-  border-left: 4px solid var(--cor-destaque);
-  background: var(--cor-campo-fundo);
-  color: var(--cor-campo-texto);
-  border-radius: 0 10px 10px 0;
-}
-
-.subgrupo + .subgrupo { margin-top: 20px; }
-
-.subgrupo-titulo {
-  color: var(--cor-amarelo);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  margin: 8px 0 4px;
-}
-
-.opcoes-colunas {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 0 24px;
-}
-
-.sem-resultado {
-  color: var(--cor-campo-texto);
-  font-weight: 600;
-}
-
-.dica {
-  margin-top: 6px;
-  font-size: 1.125rem;
-  color: var(--cor-corpo-texto);
-}
+.dica { margin-top: 6px; font-size: 0.875rem; }
 
 .formulario fieldset {
   padding: 16px 20px 20px;
-  border: 2px solid var(--cor-borda);
+  border: 2px solid var(--cor-campo-borda);
   border-radius: 12px;
 }
 
@@ -515,38 +473,73 @@ select:focus-visible {
   gap: 12px;
   padding: 6px 0;
 }
-
-.opcao label { margin: 0; font-weight: 600; color: var(--cor-corpo-texto); }
-
+.opcao label { font-weight: 600; }
 .opcao input {
+  flex-shrink: 0;
   width: 1.4rem;
   height: 1.4rem;
-  flex-shrink: 0;
-  accent-color: var(--cor-destaque);
+  accent-color: var(--cor-marcacao);
 }
 
 .formulario .btn { align-self: flex-start; }
 
-/* ---------- Rodapé ---------- */
+/* Agendamento: filtro e lista de exames */
+.filtro-linha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.filtro-linha input[type="search"] { flex: 1 1 260px; }
+
+.resumo-selecao {
+  margin-top: 16px;
+  padding: 14px 18px;
+  border-left: 4px solid var(--cor-marcacao);
+  border-radius: 0 10px 10px 0;
+  background: var(--cor-resumo-fundo);
+}
+
+#lista-exames .dica { margin: 0 0 8px; }
+.grupo-exames + .grupo-exames { margin-top: 20px; }
+.subgrupo + .subgrupo { margin-top: 20px; }
+
+.subgrupo-titulo {
+  margin: 8px 0 4px;
+  color: var(--cor-texto-destaque);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.opcoes-colunas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0 24px;
+}
+
+.sem-resultado { font-weight: 600; }
+
+
+/* =====================================================================
+   9. RODAPÉ
+   ===================================================================== */
 .footer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
   gap: 12px 24px;
   padding: 20px var(--margem);
   background: var(--cor-footer-fundo);
   color: var(--cor-footer-texto);
 }
 
-.creditos { font-weight: 600; text-align: right; }
-
 .social {
   display: flex;
   flex-wrap: wrap;
   gap: 12px 24px;
 }
-
 .social a {
   display: inline-flex;
   align-items: center;
@@ -554,69 +547,59 @@ select:focus-visible {
   font-weight: 600;
   transition: opacity 0.2s;
 }
-
 .social a:hover { opacity: 0.8; }
+.social svg { flex-shrink: 0; width: 26px; height: 26px; }
 
-.social svg {
-  width: 26px;
-  height: 26px;
-  flex-shrink: 0;
-}
+.creditos { font-weight: 600; text-align: right; }
 
+
+/* =====================================================================
+   10. TELAS MENORES
+   ===================================================================== */
+
+/* Até 1500px: menu em linha própria, abaixo do logo e dos botões */
 @media (max-width: 1500px) {
   .nav { order: 3; flex-basis: 100%; }
 }
 
-/* Abaixo de 1024px: imagem inteira em cima, texto embaixo sobre o fundo preto */
+/* Até 1023px: imagem do destaque em cima e texto embaixo, sobre o fundo claro */
 @media (max-width: 1023px) {
-  .hero { display: block; }
-  .hero-conteudo { padding: 40px var(--margem) 56px; }
-  .hero-conteudo > * { text-shadow: none; }
+  .secao.hero { display: block; }
+  .hero-conteudo { padding: 40px var(--margem) 56px; text-shadow: none; }
+  .temp-text { color: var(--cor-texto); }
+  .secao .hero-text { color: var(--cor-texto-destaque); }
 }
 
+/* Até 900px: "Como funciona" em uma coluna */
 @media (max-width: 900px) {
   .como-funciona { grid-template-columns: 1fr; }
 }
 
+/* Até 720px: celular */
 @media (max-width: 720px) {
-  .header { padding: 16px 20px; }
+  .header { padding: 16px 20px; column-gap: 12px; }
   .secao { padding: 40px 20px; }
-  .secao.hero { padding: 0; }
+  .aviso { padding-block: 56px; }
   .hero-conteudo { padding: 32px 20px 40px; }
-  .aviso { padding-top: 56px; padding-bottom: 56px; }
   .footer { padding: 24px 20px; }
   .creditos { text-align: left; }
-  .nav-links { gap: 8px 18px; }
 
   /* Menu recolhível */
-  .header { column-gap: 12px; }
-  .header.menu-recolhivel .btn-menu { display: inline-flex; padding: 10px 14px; }
-  .menu-recolhivel .nav { display: block; }
+  .header.menu-recolhivel .btn-menu { display: inline-flex; }
   .menu-recolhivel .menu-painel { display: none; flex-basis: 100%; }
   .menu-recolhivel.menu-aberto .menu-painel { display: block; }
-
-  .menu-recolhivel .nav-links {
-    flex-direction: column;
-    gap: 0;
-  }
-
+  .menu-recolhivel .nav-links { flex-direction: column; gap: 0; }
   .menu-recolhivel .nav-links a {
     display: block;
     padding: 12px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.25);
   }
-
   .menu-recolhivel .nav-links a[aria-current="page"] {
-    border-bottom-color: var(--cor-header-texto);
-    border-bottom-width: 3px;
+    border-bottom: 3px solid var(--cor-header-texto);
   }
-
   .menu-recolhivel .nav-actions { margin: 20px 0 4px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .icone-menu path { transition: none; }
+  * { transition: none !important; }
 }
-
-.grupo-exames + .grupo-exames { margin-top: 20px; }
-#lista-exames .dica { margin: 0 0 8px; }
