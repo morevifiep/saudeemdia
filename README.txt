@@ -49,3 +49,13 @@ Pendente:
 - Ligar os formulários de contato e agendamento a um envio real (Não vai rolar =/...)
 - Criar a página de login (ENTRAR ainda leva à página Em construção)
 - Trocar os links das redes sociais pelos perfis oficiais do Saúde em Dia
+
+Caso eu morra e não consiga editar as cores pós-túmulo:
+- Página	--cor-fundo, --cor-texto, --cor-titulo, --cor-texto-destaque, --cor-linha
+- Cabeçalho	--cor-header-fundo, --cor-header-texto
+- Botões	--cor-botao-fundo, --cor-botao-texto
+- Caixas de destaque	--cor-caixa-fundo, --cor-caixa-borda, --cor-caixa-texto, --cor-caixa-titulo
+- Destaque da home	--cor-hero-texto, --cor-hero-destaque
+- Formulários	--cor-campo-fundo, --cor-campo-texto, --cor-campo-borda, --cor-marcacao
+- Rodapé	--cor-footer-fundo, --cor-footer-texto
+- Foco do teclado	--cor-foco, --cor-foco-escuro
